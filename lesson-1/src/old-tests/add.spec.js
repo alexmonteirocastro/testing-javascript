@@ -1,6 +1,6 @@
-const { add } = require('./index');
+const { add } = require('../index');
 
-const { test, assert } = require('./lib');
+//const { test, assert } = require('./lib');
 
 test('The add function adds two numbers', () => {
 
@@ -8,5 +8,7 @@ test('The add function adds two numbers', () => {
 
     const expected = 9;
 
-    assert.equal(actual, expected);
+    //assert.equal(actual, expected);
+
+    expect(actual).toBe(7);
 });
