@@ -8,3 +8,5 @@
 * Code coverage
 * Handling error cases
 * Asynchronous testing
+* Using Jest
+* Migrating to Jest
