@@ -18,7 +18,7 @@ describe('The query-string package', () => {
                 category: 'nodejs'
             }
 
-            assert.deepEqual(actual, expected);
+            expect(actual).toStrictEqual(expected);
 
         });
 
@@ -46,7 +46,7 @@ describe('The query-string package', () => {
 
             const expected = expectedObject('?number=3');
 
-            assert.deepEqual(actual, expected);
+            expect(actual).toStrictEqual(expected);
 
         });
 
@@ -74,7 +74,7 @@ describe('The query-string package', () => {
 
             const expected = expectedObject('number=3');
 
-            assert.deepEqual(actual, expected);
+            expect(actual).toStrictEqual(expected);
 
         });
 
@@ -111,7 +111,7 @@ describe('The query-string package', () => {
 
             const expected = expectedQueryString(Object.keys(actualObj));
 
-            assert.deepEqual(actual, expected);
+            expect(actual).toStrictEqual(expected);
 
         });
 
@@ -131,7 +131,7 @@ describe('The query-string package', () => {
 
             const expected = expectedQueryString;
 
-            assert.deepEqual(actual, expected);
+            expect(actual).toStrictEqual(expected);
 
         });
 

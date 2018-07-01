@@ -1,4 +1,3 @@
-const assert = require('assert');
 const { findUserById, findUserByEmail} = require('../async');
 
 describe('The async tests', () => {
@@ -9,7 +8,7 @@ describe('The async tests', () => {
         
             const result = findUserById(1).then( result => {
                                 
-                assert.equal(result.user.name, 'bahdcoder');
+                expect(result.user.name).toBe('bahdcoder');
 
                 done();
 
@@ -21,7 +20,7 @@ describe('The async tests', () => {
         
             return findUserById(3).then( result => {
                                 
-                assert.equal(result.user.name, 'maldini3');
+                expect(result.user.name).toBe('maldini3');
 
             });
 
@@ -32,7 +31,7 @@ describe('The async tests', () => {
         
             const result = await findUserById(2);
 
-            assert.equal(result.user.name, 'alexcastro');
+                expect(result.user.name).toBe('alexcastro');
 
         });
 
@@ -40,7 +39,7 @@ describe('The async tests', () => {
             
             return findUserById(4).catch(error => {
 
-                assert.equal(error.message, 'User with id: 4 was not found');
+                expect(error.message).toBe('User with id: 4 was not found');
 
             })
 
@@ -54,7 +53,7 @@ describe('The async tests', () => {
         
             const result = findUserByEmail('bahdcoder@gmail.com').then( result => {
                                 
-                assert.equal(result.user.id, 1);
+                expect(result.user.id).toBe(1);
 
                 done();
 
@@ -66,7 +65,7 @@ describe('The async tests', () => {
         
             return findUserByEmail('paolo_maldini@gmail.com').then( result => {
                                 
-                assert.equal(result.user.id, 3);
+                expect(result.user.id).toBe(3);
 
             });
 
@@ -76,7 +75,7 @@ describe('The async tests', () => {
         
             const result = await findUserByEmail('alex.monteiro@seznam.cz');
 
-            assert.equal(result.user.id, 2);
+                expect(result.user.id).toBe(2);
 
         });
 
@@ -96,7 +95,7 @@ describe('The async tests', () => {
 
                 }
 
-                assert.equal(error.message, `User with email: alex.monteiro@outlook.pt was not found`);
+                expect(error.message).toBe('User with email: alex.monteiro@outlook.pt was not found');
 
             }
 

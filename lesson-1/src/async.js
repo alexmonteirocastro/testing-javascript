@@ -20,7 +20,7 @@ const findUserById = (id) => {
 
             })
 
-        }, 1500)
+        }, 150)
 
     })
 }
@@ -45,7 +45,7 @@ const findUserByEmail = (email) => {
 
             })
 
-        }, 1500)
+        }, 150)
 
     })
 }

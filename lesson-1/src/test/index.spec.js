@@ -1,4 +1,4 @@
-const assert = require('assert');
+//const assert = require('assert');
 
 const { add } = require('./../index');
 
@@ -9,19 +9,23 @@ describe('The ADD function tests', () => {
 
         const expected = 11;
 
-        assert.equal(result, expected); 
+        expect(result).toBe(expected);
     });
 
     it('Should throw error if no arguments are passed', () => {
-        assert.throws(() => {
-            add();
-        })
+       
+        expect(() => {
+            add()
+        }).toThrow();
+
     });
 
     it('Should throw error if only one argument is passed', () => {
-        assert.throws(() => {
+        
+        expect(() => {
             add(3);
-        })
+        }).toThrow();
+
     })
 })
 
