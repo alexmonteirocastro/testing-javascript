@@ -23,6 +23,6 @@ export default async (req, res, next) => {
     req.currentRecipe = recipe;
     next();
   } catch (error) {
-    return res.sendFailureResponse({ message: 'Recipe not found.' }, 404);
+    return res.sendFailureResponse({ message: 'Recipe not present in request.' }, 405);
   }
 };
