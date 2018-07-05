@@ -41,7 +41,7 @@ export default class Home extends React.Component {
     if (this.props.authUser) {
       homeButtons = (
         <span>
-          <Link to="/recipes/create" className="btn btn-primary btn-lg mr-2"> Create recipe </Link>                        
+          <Link data-testid="createRecipeHome" to="/recipes/create" className="btn btn-primary btn-lg mr-2"> Create recipe </Link>                        
           <Link to={`user/${this.props.authUser.user.id}/recipes`} className="btn btn-primary btn-lg"> Manage your recipes </Link>
         </span>  
       );
