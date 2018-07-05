@@ -2,6 +2,8 @@ import supertest from 'supertest';
 import bcrypt from 'bcrypt';
 import app from '../../../index';
 import { User } from '../../../database/models'
+import { generateUser } from '../../utils/generate'
+
 
 describe('The user login', () => {
 
@@ -14,19 +16,8 @@ describe('The user login', () => {
         
         /// arrange
 
-        //setup fake user data
-        const fakeUser = {
-            name: 'bahdcoder',
-            email: 'bahdcoder@gmail.com',
-            password: 'password'
-        }
+        const { user, token, fakeUser } = await generateUser();
 
-        // create new user
-        await User.create({
-            name: fakeUser.name,
-            email: fakeUser.email,
-            password: bcrypt.hashSync(fakeUser.password, 1)
-        }); //come back later
         
         /// action
 
@@ -36,7 +27,7 @@ describe('The user login', () => {
             password: fakeUser.password
         })
 
-        //console.log(response.body)
+        // console.log(response.body)
 
 
         /// assertion
