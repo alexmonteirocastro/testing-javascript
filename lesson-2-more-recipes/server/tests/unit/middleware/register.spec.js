@@ -23,7 +23,7 @@ test('the registerUserValidator calls the next function if the validation is suc
     //creating a response
     const res = {
 
-        sendFailureResponse(){}
+        //sendFailureResponse(){}
 
     }
 

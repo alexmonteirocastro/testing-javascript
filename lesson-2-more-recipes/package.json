@@ -8,7 +8,8 @@
     "start": "cross-env NODE_ENV=production node build/index.js",
     "build": "./node_modules/.bin/babel server/ -d build --copy-files",
     "migrate:refresh": "./node_modules/.bin/sequelize db:migrate:undo:all && ./node_modules/.bin/sequelize db:migrate",
-    "test": "jest --detectOpenHandles --watchAll",
+    "test": "jest --detectOpenHandles --forceExit",
+    "test:watch": "jest --detectOpenHandles --watchAll",
     "test-coverage": "jest --detectOpenHandles --coverage",
     "heroku-postbuild": "npm run build",
     "start:worker:mails": "cross-env NODE_ENV=production node server/workers/mails.js",
@@ -31,7 +32,9 @@
     "forever-monitor": "^1.7.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.2.0",
-    "pm2": "^2.9.1"
+    "jshint": "^2.9.5",
+    "pm2": "^2.9.1",
+    "supertest": "^3.1.0"
   },
   "dependencies": {
     "babel-cli": "6.26.0",
