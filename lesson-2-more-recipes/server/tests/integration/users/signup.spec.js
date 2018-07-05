@@ -4,6 +4,10 @@ import  { User } from '../../../database/models'
 
 describe('The user sign up tests', () => {
 
+    // Test hook
+    beforeEach( async () => {
+        await User.destroy({ where: {} });
+    });
 
     test('should register a new user',  async () => {
         
@@ -12,7 +16,6 @@ describe('The user sign up tests', () => {
         //console.log(response.body)
 
         // Arrange
-        await User.destroy({ where: {} })
 
         // Get fake user data 
         const fakeUser = {
@@ -54,9 +57,6 @@ describe('The user sign up tests', () => {
             password: 'password'
         }
 
-        // clean the databse
-        await User.destroy({ where: {} })
-
 
         // put user to the database. (resgister a user before hand)
         await User.create(fakeUser);
@@ -72,7 +72,7 @@ describe('The user sign up tests', () => {
         expect(response.status).toBe(422);
 
         // 2. Make sure that errors from server match the scenario
-        console.log(response.body);
+        // console.log(response.body);
         expect(response.body.status).toBe('fail');
         expect(response.body.data).toEqual({ errors: [ 'A user with this email already exists.' ] });
         expect(response.body).toMatchSnapshot();
