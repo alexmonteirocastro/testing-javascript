@@ -31,7 +31,7 @@ describe('The create recipe process', () => {
 
         /// Assertion
 
-        console.log(response.body)
+        // console.log(response.body)
         // make sure recipe is returned
         const { recipe } = response.body.data;
         expect(response.status).toBe(201);

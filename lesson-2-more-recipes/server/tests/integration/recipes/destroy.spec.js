@@ -33,7 +33,7 @@ describe('The delete recipe endpoint', () => {
         })
 
         /// Assertion
-        console.log(response.body);
+        // console.log(response.body);
         // response from server is recipe deleted
         expect(response.status).toBe(200);
         expect(response.body.data.message).toBe('Recipe deleted.');

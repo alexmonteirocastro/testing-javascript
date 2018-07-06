@@ -30,4 +30,23 @@ describe('The registration process', () => {
 
     });
 
+    it('registers through the API', () => {
+
+        const fakeUser = {
+            name: faker.name.findName(),
+            email: faker.internet.email(),
+            password: faker.internet.password()
+        }
+        
+        cy.request('POST', 'http://localhost:4080/api/v1/users/signup', fakeUser).then(response => {
+            console.log(JSON.stringify(response.body))
+            cy.window().then(window => {
+                window.localStorage.setItem('authUser', JSON.stringify(response.body.data))
+            })
+        })
+
+        cy.visit('http://localhost:4080/');
+
+    });
+
 });

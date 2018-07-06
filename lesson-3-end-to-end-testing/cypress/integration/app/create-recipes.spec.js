@@ -11,17 +11,7 @@ const generateFakeRecipe = () => ({
 
 describe('The recipe creation process', () => {
 
-    it('should create a recipe for the user', () => {
-
-        /// Arrange
-
-        const fakeRecipe = generateFakeRecipe();
-
-        // provide authenticated user
-
-        cy.visit('http://localhost:4080');
-
-        cy.get('[href="/auth/register"]').click();
+    beforeEach(() => {
 
         const fakeUser = {
             name: faker.name.findName(),
@@ -29,15 +19,24 @@ describe('The recipe creation process', () => {
             password: faker.internet.password()
         }
 
-        cy.get('input[name="name"]').type(fakeUser.name);
+        
+        cy.request('POST', 'http://localhost:4080/api/v1/users/signup', fakeUser).then(response => {
+            console.log(JSON.stringify(response.body))
+            cy.window().then(window => {
+                window.localStorage.setItem('authUser', JSON.stringify(response.body.data))
+            })
+        })
 
-        cy.get('input[name="email"]').type(fakeUser.email);
+        cy.visit('http://localhost:4080/');
 
-        cy.get('input[name="password"]').type(fakeUser.password);
+    });
+    
 
-        cy.get('input[name="confirmPassword"]').type(fakeUser.password);
+    it('should create a recipe for the user', () => {
 
-        cy.get('.btn').click();
+        /// Arrange
+
+        const fakeRecipe = generateFakeRecipe();
 
         /// Action
 
@@ -94,6 +93,8 @@ describe('The recipe creation process', () => {
 
         // assert url has changed
         cy.url().should('contain', 'recipe');
+
+        // assert we see recipe details
         cy.contains(fakeRecipe.title).should('be.exist');
         cy.contains(fakeRecipe.description).should('be.exist');
         cy.contains(fakeRecipe.timeToCook).should('be.exist');
@@ -103,9 +104,6 @@ describe('The recipe creation process', () => {
         cy.contains(fakeRecipe.procedure[0]).should('be.exist');
         cy.contains(fakeRecipe.procedure[1]).should('be.exist');
         cy.contains(fakeRecipe.procedure[2]).should('be.exist');
-
-
-        // assert we see recipe details
 
     });
 
