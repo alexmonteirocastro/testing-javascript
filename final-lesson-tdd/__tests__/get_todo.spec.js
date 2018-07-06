@@ -17,12 +17,9 @@ describe('get single todo', () => {
         const response = await server.get(`/todo/${createdTodo.id}`);
 
         // assert the todo is returned
-        expect(response.body).toEqual({
-            title: TODO.title,
-            id: createdTodo.id,
-            description: TODO.description,
-            completed: TODO.completed
-        });
+        //console.log(response.text);
+        expect(response.text).toMatch(TODO.title);
+        expect(response.text).toMatch(TODO.description);
 
     });
 

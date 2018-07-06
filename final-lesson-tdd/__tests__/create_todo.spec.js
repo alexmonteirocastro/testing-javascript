@@ -17,9 +17,6 @@ describe('The todo creation process', () => {
 
         /// assertions
 
-        // assert response has a message - { message: '' }
-        expect(response.body.message).toBe('TODO created successfully.');
-
         // assert the database has a new todo
         const todoFromDatabase = await Todo.find({ title: TODO.title });
         // console.log(todoFromDatabase);

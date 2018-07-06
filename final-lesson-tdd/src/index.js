@@ -7,6 +7,10 @@ const config = require('./config');
 
 const app = express();
 
+// Automatically sets view engine and adds dot notation to app.render
+app.use(require('express-edge'));
+app.set('views', `${__dirname}/views`);
+
 // registering body-parser middleware with express
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
